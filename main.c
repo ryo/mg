@@ -57,9 +57,11 @@ main(int argc, char **argv)
 	int	  	 nobackups = 0, bro = 0;
 	struct buffer	*bp = NULL;
 
+#ifdef __OpenBSD__
 	if (pledge("stdio rpath wpath cpath fattr chown getpw tty proc exec",
 	    NULL) == -1)
 		err(1, "pledge");
+#endif
 
 	while ((o = getopt(argc, argv, "nRf:")) != -1)
 		switch (o) {

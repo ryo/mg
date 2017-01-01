@@ -703,7 +703,7 @@ excline(char *line)
 	char	*argp = NULL;
 	long	 nl;
 	int	 bind;
-	KEYMAP	*curmap;
+	KEYMAP	*curmap = NULL;
 #define BINDARG		0  /* this arg is key to bind (local/global set key) */
 #define	BINDNO		1  /* not binding or non-quoted BINDARG */
 #define BINDNEXT	2  /* next arg " (define-key) */
@@ -897,9 +897,10 @@ excline(char *line)
 			lp->l_text[lp->l_used] = '\0';
 			status = bindkey(&curmap, lp->l_text, key.k_chars,
 			    key.k_count);
-		} else
+		} else {
 			status = bindkey(&curmap, NULL, key.k_chars,
 			    key.k_count);
+		}
 		break;
 	case BINDNO:
 		inmacro = TRUE;

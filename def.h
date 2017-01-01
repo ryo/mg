@@ -10,6 +10,7 @@
  * per-terminal definitions are in special header files.
  */
 
+#include	"os_compat.h"
 #include	"chrdef.h"
 
 typedef int	(*PF)(int, int);	/* generally useful type */
